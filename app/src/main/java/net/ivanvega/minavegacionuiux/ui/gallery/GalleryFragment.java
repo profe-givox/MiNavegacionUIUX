@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -50,9 +51,15 @@ public class GalleryFragment extends Fragment {
 
         final TextView textView = binding.textGallery;
         final ImageView img = binding.imgRandom;
+        final Button btnRan = binding.btnChangeImg;
+        final ImageView img2 = binding.imageView2;
+
+        btnRan.setOnClickListener(view -> galleryViewModel.setRandomImage());
 
         Picasso.with(getContext()).
-                load(galleryViewModel.urlImage()).into(img);
+                load(galleryViewModel.urlImage().getValue()).into(img);
+
+
 
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -60,6 +67,16 @@ public class GalleryFragment extends Fragment {
                 textView.setText(s);
             }
         });
+
+        galleryViewModel.urlImage().observe(getViewLifecycleOwner()
+                , new Observer<String>() {
+                    @Override
+                    public void onChanged(String s) {
+                        Picasso.with(getContext()
+                                ).load(s).into(img2);
+                    }
+                });
+
 
 
         return root;
