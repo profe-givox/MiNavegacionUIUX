@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import net.ivanvega.minavegacionuiux.R;
 import net.ivanvega.minavegacionuiux.databinding.FragmentHomeBinding;
@@ -27,6 +28,12 @@ public class HomeFragment extends Fragment {
 
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
+
+
+
+        binding.btnNavCon.setOnClickListener(view -> {
+            Navigation.findNavController(getView()).navigate(R.id.blankFragment);
+        });
 
         final TextView textView = binding.textHome;
         homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {

@@ -68,6 +68,8 @@ public class GalleryFragment extends Fragment {
             }
         });
 
+
+
         galleryViewModel.urlImage().observe(getViewLifecycleOwner()
                 , new Observer<String>() {
                     @Override

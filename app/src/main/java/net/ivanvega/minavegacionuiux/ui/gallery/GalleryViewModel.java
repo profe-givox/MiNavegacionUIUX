@@ -10,6 +10,8 @@ public class GalleryViewModel extends ViewModel {
 
     private MutableLiveData<String> mText;
     private MutableLiveData <String> urlImage;
+
+
     public GalleryViewModel() {
         mText = new MutableLiveData<>();
         mText.setValue("This is gallery fragment");
@@ -28,6 +30,7 @@ public class GalleryViewModel extends ViewModel {
     }
 
     public void setRandomImage(){
+
         this.urlImage.setValue(this.urlImageRandom());
     }
 
