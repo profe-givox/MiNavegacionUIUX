@@ -29,23 +29,8 @@ public class GalleryFragment extends Fragment {
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-
-        /*
-        View layoutGallery =
-                inflater.inflate(R.layout.fragment_gallery, container, false);
-
-        img = layoutGallery.findViewById(R.id.imgRandom);
-
-
-        Picasso.with(getContext()).
-                load(new GalleryViewModel().urlImage()).into(img);
-        */
-
-
-
         galleryViewModel =
                 new ViewModelProvider(this).get(GalleryViewModel.class);
-
         binding = FragmentGalleryBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
@@ -53,13 +38,7 @@ public class GalleryFragment extends Fragment {
         final ImageView img = binding.imgRandom;
         final Button btnRan = binding.btnChangeImg;
         final ImageView img2 = binding.imageView2;
-
         btnRan.setOnClickListener(view -> galleryViewModel.setRandomImage());
-
-        Picasso.with(getContext()).
-                load(galleryViewModel.urlImage().getValue()).into(img);
-
-
 
         galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
@@ -67,9 +46,6 @@ public class GalleryFragment extends Fragment {
                 textView.setText(s);
             }
         });
-
-
-
         galleryViewModel.urlImage().observe(getViewLifecycleOwner()
                 , new Observer<String>() {
                     @Override
@@ -78,11 +54,7 @@ public class GalleryFragment extends Fragment {
                                 ).load(s).into(img2);
                     }
                 });
-
-
-
         return root;
-
     }
 
     @Override

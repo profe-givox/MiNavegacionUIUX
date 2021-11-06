@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
+import androidx.navigation.fragment.NavHostFragment;
 
 import net.ivanvega.minavegacionuiux.R;
 import net.ivanvega.minavegacionuiux.databinding.FragmentHomeBinding;
@@ -29,10 +30,13 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-
-
         binding.btnNavCon.setOnClickListener(view -> {
-            Navigation.findNavController(getView()).navigate(R.id.blankFragment);
+            //Navigation.findNavController(getView()).navigate(R.id.blankFragment);
+            /*Navigation.findNavController(getActivity(), R.id.nav_host_fragment_content_main).navigate(R.id.blankFragment);*/
+            Bundle bundle = new Bundle();
+            bundle.putString("saludar", "Hola Mundo!");
+            NavHostFragment.findNavController(this)
+                    .navigate(R.id.action_nav_home_to_blankFragment, bundle);
         });
 
         final TextView textView = binding.textHome;
